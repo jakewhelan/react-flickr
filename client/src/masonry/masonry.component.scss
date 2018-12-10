@@ -1,0 +1,14 @@
+flickr-masonry {
+  display: flex;
+  height: auto;
+  margin: 0 auto;
+
+  & > span {
+    display: flex;
+    height: auto;
+  }
+
+  .masonry-column {
+    height: auto;
+  }
+}

@@ -1,0 +1,235 @@
+$loader-size: 50px;
+$loader-gutter: $loader-size/10;
+$loader-transform: $loader-size + $loader-gutter * 2;
+
+$small-loader-size: 10px;
+$small-loader-gutter: $small-loader-size/10;
+$small-loader-transform: $small-loader-size + $small-loader-gutter * 2;
+
+@keyframes pink {
+  0% { z-index: 1; }
+  50% { transform: translateX($loader-transform); }
+}
+
+@keyframes blue {
+  50% { transform: translateX(-$loader-transform); }
+}
+
+@keyframes pink-small {
+  0% { z-index: 1; }
+  50% { transform: translateX($small-loader-transform); }
+}
+
+@keyframes blue-small {
+  50% { transform: translateX(-$small-loader-transform); }
+}
+
+#app {
+  height: 100%;
+}
+
+flickr-app {
+  display: block;
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+
+  #intersector {
+    height: 1000px;
+    width: 100%;
+    margin-top: -1000px;
+    z-index: -1000;
+    position: relative;
+  }
+
+  .prompt {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    font-size: 32px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    padding-top: 30vh;
+    padding-left: 20px;
+    padding-right: 20px;
+    z-index: -100;
+  }
+
+  .nav {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 16px;
+    z-index: 1000;
+
+    .circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 100%;
+      background: #bf0112;
+      margin-right: 28px;
+      margin-top: 4px;
+      display: none;
+    }
+    .square {
+      margin-top: 4px;
+      height: 32px;
+      width: 32px;
+      border-radius: 3px;
+      background: #eaeaea;
+      align-self: right;
+      margin-left: 24px;
+      display: none;
+    }
+    .search-input {
+      height: 40px;
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid #bbbdbf;
+      padding: 0 20px;
+      font-size: 24px;
+    }
+
+    @media only screen and (min-width: 521px) {
+      .nav {
+        width: initial;
+      }
+
+      .circle {
+        display: block;
+      }
+
+      .search-input {
+        width: calc(100% - 110px);
+        margin: initial;
+        margin-right: 8px;
+      }
+    }
+
+    @media only screen and (min-width: 1040px) {
+      .square {
+        display: block;
+      }
+
+      .search-input {
+        width: calc(100% - 175px - 60px);
+      }
+    }
+  }
+
+  .rectangle {
+    height: 56px;
+    width: 800px;
+    margin: 40px auto 24px;
+    background: #eaeaea;
+    border-radius: 3px;
+    position: relative;
+    padding-left: 4px;
+    &:before {
+      content: '';
+      position: absolute;
+      height: 48px;
+      width: 160px;
+      border-radius: 3px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background: #ffffff;
+    }
+  }  
+
+  .loader {
+    padding-top: 10vh;
+
+    .loader-title {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+  
+    .loader-icon {
+      position: relative;
+      width: $loader-size * 2;
+      height: $loader-size;
+      border-radius: $loader-size/2;
+      border: $loader-size * .75 solid transparent;
+      background: #3d3f3c;
+      margin: 0 auto;
+      box-sizing: content-box;
+    }
+  
+    %loader-dot {
+      position: absolute;
+      top: 0;
+      width: $loader-size;
+      height: $loader-size;
+      border-radius: 100%;
+      animation: pink 1.05s ease-in-out infinite;
+    }
+  
+    .dot-pink {
+      @extend %loader-dot;
+      background: #ff2e92;
+      left: -$loader-gutter;
+    }
+  
+    .dot-blue {
+      @extend %loader-dot;
+      animation-name: blue;
+      background: #007bdc;
+      right: -$loader-gutter;
+    }
+  }
+
+  .small-loader {
+    margin-top: 30x;
+    margin-bottom: 30px;
+
+    .loader-title {
+      font-size: 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .loader-icon {
+      position: relative;
+      width: $small-loader-size * 2;
+      height: $small-loader-size;
+      border-radius: $small-loader-size/2;
+      border: $small-loader-size * .75 solid transparent;
+      background: #3d3f3c;
+      margin: 0 auto;
+      box-sizing: content-box;
+    }
+  
+    %loader-dot {
+      position: absolute;
+      top: 0;
+      width: $small-loader-size;
+      height: $small-loader-size;
+      border-radius: 100%;
+      animation: pink-small 1.05s ease-in-out infinite;
+    }
+  
+    .dot-pink {
+      @extend %loader-dot;
+      background: #ff2e92;
+      left: -$small-loader-gutter;
+    }
+  
+    .dot-blue {
+      @extend %loader-dot;
+      animation-name: blue-small;
+      background: #007bdc;
+      right: -$small-loader-gutter;
+    }
+  }
+
+  .no-more {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+}
